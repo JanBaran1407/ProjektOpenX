@@ -1,12 +1,15 @@
-from utils import load_dataset, split
+from utils import load_dataset
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from consts import RANDOM_STATE, TEST_SIZE, MODELS_SAVE_PATH
 from pickle import dump
-from consts import MODELS_SAVE_PATH
 from utils import load_model
 import tensorflow as tf
 from sklearn.model_selection import GridSearchCV
 from matplotlib import pyplot as plt
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from utils import split
+
 
 def train_sk_model(clf, clf_name, X, y):
     print(f"Training {clf_name}")

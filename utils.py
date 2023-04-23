@@ -9,7 +9,7 @@ class ModelNotFoundException(Exception):
 
 def load_dataset():
     dataset_df = pandas.read_csv(DATASET_PATH, header=None)
-    return dataset_df.head(1000)
+    return dataset_df
 
 def load_model(file_name):
     path = f"{MODELS_SAVE_PATH}/{file_name}.pkl"
