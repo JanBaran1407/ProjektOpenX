@@ -82,3 +82,21 @@ def train_tf_model():
     plt.tight_layout()
     plt.savefig('grid_search_results.png')
     plt.show()
+
+def evaluate_all_models():
+    knn, rf, dnn  = get_model(name = 'all')
+    dataset = load_dataset()
+    y = dataset.pop(54)
+
+    test_set = split(dataset, y)['test']
+    scores = {
+        "K_nearest_neighbours": knn.score(test_set[0], test_set[1]),
+        "Random forest": rf.score(test_set[0], test_set[1]),
+        "Deep neural network": dnn.score(test_set[0], test_set[1]),
+    }
+
+    info = []
+    for score in sorted(scores.items(), key=lambda x:x[1], reverse=True):
+        info.append(f'{score[0]} got {int(score[1] * 100)}% accuracy.')
+
+    return info
